@@ -52,7 +52,7 @@
  # satellite-installer --scenario satellite \
    --foreman-admin-username admin  \
    --foreman-admin-password password \
-   --foreman-initial-organization "MY-LAB" \
+   --foreman-initial-organization "RHV-LAB" \
    --foreman-initial-location "LAB" \
    --foreman-proxy-dhcp true \
    --foreman-proxy-dhcp-interface eth0 \
@@ -77,7 +77,22 @@ foreman:
   :username: 'admin'
   :password: 'password'
 ~~~
+```
+[root@sat6 ~]# hammer organization list
+---|---------|---------|------------
+ID | NAME    | LABEL   | DESCRIPTION
+---|---------|---------|------------
+1  | RHV-LAB | RHV-LAB |            
+---|---------|---------|------------
+[root@sat6 ~]# 
+
+```
 
 ### Generate and upload Manifest 
 
+ * go to https://access.redhat.com/management/distributors?type=satellite
+   1. -> Register a Satellite
+     * Fill in `Name`
+     * Select Version: `6.2`
+     * press `Register`
 

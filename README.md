@@ -30,7 +30,6 @@
 
 ### IPA
 ```
-**
  # yum install bind-utils ipa-client ipa-admintools
  # ipa-client-install --mkhomedir --enable-dns-updates 
  # host sat6
@@ -68,6 +67,7 @@
 ### Configuring Satellite
 #### Hammer w/o passord
  # mkdir /root/.hammer
+
  # vi /root/.hammer/cli_config.yml
 ~~~
 foreman:

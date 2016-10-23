@@ -92,7 +92,12 @@ ID | NAME    | LABEL   | DESCRIPTION
 
  * go to https://access.redhat.com/management/distributors?type=satellite
    1. Register a Satellite
-     * Fill in `Name`
+     * fill in `Name`
      * Select Version: `6.2`
      * press `Register`
-
+     * NOTE: at this point we just created the satellite manifest in the Red Hat portal, actually this is not more than wrapper that needs to be filled (with subscriptions)
+   2. Add subscriptions  
+     * klick `Attach Subscriptions`
+     * Select subscriptions _and_ appripriate ammount to be added to the manifest
+     * NOTE
+        * If satellite is registered upsteam, no Satellite subscription needs to be added 

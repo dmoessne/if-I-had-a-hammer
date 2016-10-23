@@ -78,20 +78,20 @@ foreman:
   :password: 'password'
 ~~~
 ```
-[root@sat6 ~]# hammer organization list
+# hammer organization list
 ---|---------|---------|------------
 ID | NAME    | LABEL   | DESCRIPTION
 ---|---------|---------|------------
 1  | RHV-LAB | RHV-LAB |            
 ---|---------|---------|------------
-[root@sat6 ~]# 
+# 
 
 ```
 
 ### Generate and upload Manifest 
 
  * go to https://access.redhat.com/management/distributors?type=satellite
-   1. -> Register a Satellite
+   1. Register a Satellite
      * Fill in `Name`
      * Select Version: `6.2`
      * press `Register`

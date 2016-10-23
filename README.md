@@ -123,8 +123,9 @@ organization_id | 1
 location_id     | 1    
 ----------------|------
 # 
-
 ~~~
+
+ * **NOTE: from now on everything that is dine relates to this defaults!**
 
 ### Generate and upload Manifest 
 
@@ -146,4 +147,19 @@ location_id     | 1
  $ scp manifest_12ed53a2-2ce3-2d54-6274-fe49fegaadeb.zip root@sat6:
 ```
 
- 
+ * back on the Satellite Server upload the manifest:
+```
+  # hammer subscription upload --file /root/manifest_12ed53a2-2ce3-2d54-6274-fe49fegaadeb.zip 
+
+  # hammer subscription list
+~~~
+---|----------------------------------|-----------------------------------------|----------|---------|--------------|----------|----------|------------------------------|----------|---------
+ID | UUID                             | NAME                                    | CONTRACT | ACCOUNT | SUPPORT      | QUANTITY | CONSUMED | END DATE                     | QUANTITY | ATTACHED
+---|----------------------------------|-----------------------------------------|----------|---------|--------------|----------|----------|------------------------------|----------|---------
+1  | 3d889cd345a1aa122a12f168ccc50273 | Employee SKU                            | 12345678 | 000000  | Self-Support | 99       | 0        | 1033-08-01T05:59:59.000+0000 | 99       | 0       
+3  | 3d889cd345a1aa122a12f168cd9c03f5 | RHEV Employee Subscription              | 12345678 | 000000  | Self-Support | 99       | 0        | 1033-08-01T05:59:59.000+0000 | 99       | 0       
+4  | 3d889cd345a1aa122a12f168cde00409 | Red Hat Satellite Employee Subscription | 12345678 | 000000  | Self-Support | 99       | 0        | 1033-08-01T05:59:59.000+0000 | 99       | 0       
+---|----------------------------------|-----------------------------------------|----------|---------|--------------|----------|----------|------------------------------|----------|---------
+# 
+~~~ 
+```

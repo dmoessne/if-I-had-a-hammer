@@ -2,9 +2,9 @@
 
 * Install Satellite 
 
-# subscription-manager register
+ # subscription-manager register
 
-# subscription-manager list --available |less
+ # subscription-manager list --available |less
 
-# subscription-manager attach --pool <pool-id>
+ # subscription-manager attach --pool <pool-id>
 

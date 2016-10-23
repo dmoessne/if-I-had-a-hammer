@@ -65,9 +65,12 @@
 ```
 
 ### Configuring Satellite
+
 #### Hammer w/o passord
+```
  # mkdir /root/.hammer
  # vi /root/.hammer/cli_config.yml
+```
 ~~~
 foreman:
   :host: 'https://localhost'

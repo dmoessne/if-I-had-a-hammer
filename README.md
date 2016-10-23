@@ -1,4 +1,4 @@
-##  Install Satellite 
+##  Install Satellite 6.2
 
 ### install packages
 ```
@@ -85,8 +85,46 @@ ID | NAME    | LABEL   | DESCRIPTION
 1  | RHV-LAB | RHV-LAB |            
 ---|---------|---------|------------
 # 
-
 ```
+ * To save a bit of times and commands, we can make use of new Satellite 6.2 `hammer defaults` feature:
+~~~
+# hammer defaults list
+----------|------
+PARAMETER | VALUE
+----------|------
+# 
+# hammer organization list
+---|---------|---------|------------
+ID | NAME    | LABEL   | DESCRIPTION
+---|---------|---------|------------
+1  | RHV-LAB | RHV-LAB |            
+---|---------|---------|------------
+# 
+# 
+# hammer location list
+---|-----
+ID | NAME
+---|-----
+2  | LAB 
+---|-----
+# 
+# 
+# hammer defaults add --param-name organization_id --param-value 1
+Added organization_id default-option with value 1.
+# 
+# hammer defaults add --param-name location_id --param-value 1
+Added location_id default-option with value 1.
+# 
+# hammer defaults list
+----------------|------
+PARAMETER       | VALUE
+----------------|------
+organization_id | 1    
+location_id     | 1    
+----------------|------
+# 
+
+~~~
 
 ### Generate and upload Manifest 
 
@@ -102,3 +140,10 @@ ID | NAME    | LABEL   | DESCRIPTION
      * Select subscriptions _and_ appripriate ammount to be added to the manifest
        * **NOTE:**
           * If satellite is registered upsteam, no Satellite subscription needs to be added 
+   3. Finally press `Download manifest` to download the manifest to your local computer, then copy it over to you Satellite 6 server
+
+```
+ $ scp manifest_12ed53a2-2ce3-2d54-6274-fe49fegaadeb.zip root@sat6:
+```
+
+ 

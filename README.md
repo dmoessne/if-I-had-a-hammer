@@ -167,7 +167,8 @@ ID | UUID                             | NAME                                    
 
 ### Enable Repositories
 #### RHEL7
-
+##### How to find Product and Name to enable Repositories?
+* First search for 
 ```
   # hammer product list --full-results yes |less
 ```
@@ -218,15 +219,15 @@ Content:
 ~~~
 
 ~~~
-# hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (RPMs)'
-Repository enabled
-# hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)'
-Repository enabled
-# hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (Kickstart)'
-Repository enabled
-# hammer repository-set enable --product 'Red Hat Enterprise Linux Server'  --basearch='x86_64'  --name 'Red Hat Satellite Tools 6.2 (for RHEL 7 Server) (RPMs)'  
-Repository enabled
-# 
+  # hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (RPMs)'
+  Repository enabled
+  # hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)'
+  Repository enabled
+  # hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (Kickstart)'
+  Repository enabled
+  # hammer repository-set enable --product 'Red Hat Enterprise Linux Server'  --basearch='x86_64'  --name 'Red Hat Satellite Tools 6.2 (for RHEL 7 Server) (RPMs)'  
+  Repository enabled
+  # 
 ~~~
 
 ```
@@ -417,4 +418,45 @@ ID | NAME                                                                       
 34 | JBoss Enterprise Application Platform 6 RHEL 6 Server RPMs x86_64 6Server        | JBoss Enterprise Application Platform        | yum          | https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/jbeap/6/os     
 ---|----------------------------------------------------------------------------------|----------------------------------------------|--------------|---------------------------------------------------------------------------------
 # 
+~~~
+
+
+## Sync Repositories
+```
+  # for repo in $(hammer --csv --csv-separator ';' repository list --organization-id 1 |grep -v Id |awk -F ';' '{print $1}'); do echo $repo; hammer repository synchronize --async --id $repo;done
+```
+~~~
+67
+Repository is being synchronized in task 2ef86e82-d608-4dbd-8a44-c3a2198dabbc
+33
+Repository is being synchronized in task a2b409cc-d6c7-40d4-8712-e276c48272b6
+69
+Repository is being synchronized in task 0edf77e8-ea79-43f2-ba94-80eb4eaeb971
+68
+Repository is being synchronized in task 37da4085-fc1a-4716-945a-4b3aa886af1f
+5
+Repository is being synchronized in task cb77a370-2091-422c-b3ae-a7335702eac6
+[...]
+~~~
+```
+  # hammer task list |head -10
+```
+~~~
+-------------------------------------|------|-------------------|---------------------|---------------------|---------|---------|----------------------------|---------------------------------------------------------------------------------
+ID                                   | NAME | OWNER             | STARTED AT          | ENDED AT            | STATE   | RESULT  | TASK ACTION                | TASK ERRORS                                                                     
+-------------------------------------|------|-------------------|---------------------|---------------------|---------|---------|----------------------------|---------------------------------------------------------------------------------
+ffac2b67-ba8f-4d56-bb9e-47938d073c87 |      | admin             | 2016/10/24 08:29:54 |                     | running | pending | Synchronize                |                                                                                 
+94b865ac-6289-4b26-b0b8-52e49fad4d46 |      | admin             | 2016/10/24 08:29:47 |                     | running | pending | Synchronize                |                                                                                 
+eb4c445a-891d-4b8b-b38e-e240b7415a54 |      | admin             | 2016/10/24 08:29:45 |                     | running | pending | Synchronize                |                                                                                 
+74b172ca-b149-49f9-aa97-3fad28c0ceae |      | admin             | 2016/10/24 08:29:42 |                     | running | pending | Synchronize                |                                                                                 
+41422a3d-2d47-4e2b-b58d-a380e8700ab1 |      | admin             | 2016/10/24 08:29:39 |                     | running | pending | Synchronize                |                                                                                 
+dc1d9cd7-8c00-413a-b891-ab02a915b1c6 |      | admin             | 2016/10/24 08:29:35 |                     | running | pending | Synchronize                |                                                                                 
+72dfa33f-ee38-4f08-82ff-b886fa01e39e |      | admin             | 2016/10/24 08:29:33 |                     | running | pending | Synchronize                |                                                                                 
+~~~
+
+~~~
+[root@sat6 ~]# hammer task progress --id 83ee90c2-7962-4e87-9fb2-4d7930d4001e
+[......................................................................................................................................................................................................................................................................] [100%]
+[root@sat6 ~]# hammer task progress --id 790b93cf-c54c-4c88-b29c-78b910f95af8
+[...................................................................................................................................                                                                                                                                    ] [50%]
 ~~~

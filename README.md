@@ -336,7 +336,7 @@ Content:
   # hammer repository-set enable --product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - Supplementary (RPMs)' --releasever='7Server'
 ```
 
-### RHV
+#### RHV
 ```
   # hammer repository-set enable --product 'Red Hat Virtualization Host' --basearch='x86_64' --name 'Red Hat Virtualization Host 7 (RPMs)'
 
@@ -436,7 +436,7 @@ ID | NAME                                                                       
 ~~~
 
 
-## Sync Repositories
+### Sync Repositories
 ```
   # for repo in $(hammer --csv --csv-separator ';' repository list --organization-id 1 |grep -v Id |awk -F ';' '{print $1}'); do echo $repo; hammer repository synchronize --async --id $repo;done
 ```
@@ -470,8 +470,11 @@ dc1d9cd7-8c00-413a-b891-ab02a915b1c6 |      | admin             | 2016/10/24 08:
 ~~~
 
 ~~~
-[root@sat6 ~]# hammer task progress --id 83ee90c2-7962-4e87-9fb2-4d7930d4001e
-[......................................................................................................................................................................................................................................................................] [100%]
-[root@sat6 ~]# hammer task progress --id 790b93cf-c54c-4c88-b29c-78b910f95af8
-[...................................................................................................................................                                                                                                                                    ] [50%]
+  # hammer task progress --id 83ee90c2-7962-4e87-9fb2-4d7930d4001e
+  [......................................................................................................................................................................................................................................................................] [100%]
+  # hammer task progress --id 790b93cf-c54c-4c88-b29c-78b910f95af8
+  [...................................................................................................................................                                                                                                                                    ] [50%]
 ~~~
+
+
+### Sync Plans

@@ -26,12 +26,27 @@
    && firewall-cmd  --direct --add-rule ipv6 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 28017 -m owner --uid-owner root -j ACCEPT \
    && firewall-cmd  --direct --add-rule ipv4 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 28017 -j DROP \
    && firewall-cmd  --direct --add-rule ipv6 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 28017 -j DROP
+ #
+ # firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 27017 -m owner --uid-owner apache -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 27017 -m owner --uid-owner apache -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 27017 -m owner --uid-owner root -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 27017 -m owner --uid-owner root -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 27017 -j DROP \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 27017 -j DROP \
+   && firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 28017 -m owner --uid-owner apache -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 28017 -m owner --uid-owner apache -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 28017 -m owner --uid-owner root -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 0 -o lo -p tcp -m tcp --dport 28017 -m owner --uid-owner root -j ACCEPT \
+   && firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 28017 -j DROP \
+   && firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 1 -o lo -p tcp -m tcp --dport 28017 -j DROP
+
 ```
 
 ### IPA
 ```
  # yum install bind-utils ipa-client ipa-admintools
  # ipa-client-install --mkhomedir --enable-dns-updates 
+ # ipa dnsrecord-add 10.25.172.in-addr.arpa 50 --ptr-rec=sat6.lab.example.com
  # host sat6
  # host 192.168.10.50
 ```

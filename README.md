@@ -127,7 +127,7 @@ ID | NAME
 # hammer defaults add --param-name organization_id --param-value 1
 Added organization_id default-option with value 1.
 # 
-# hammer defaults add --param-name location_id --param-value 1
+# hammer defaults add --param-name location_id --param-value 2
 Added location_id default-option with value 1.
 # 
 # hammer defaults list
@@ -135,7 +135,7 @@ Added location_id default-option with value 1.
 PARAMETER       | VALUE
 ----------------|------
 organization_id | 1    
-location_id     | 1    
+location_id     | 2    
 ----------------|------
 # 
 ~~~
@@ -478,3 +478,67 @@ dc1d9cd7-8c00-413a-b891-ab02a915b1c6 |      | admin             | 2016/10/24 08:
 
 
 ### Sync Plans
+~~~
+  # hammer sync-plan create --name 'SyncPlan JBoss Enterprise Application Platform' --enabled=true --interval daily --sync-date "2016-10-25 18:00:00"
+  Sync plan created
+  # hammer product set-sync-plan --name 'JBoss Enterprise Application Platform' --sync-plan 'SyncPlan JBoss Enterprise Application Platform'
+  Synchronization plan assigned.
+  # 
+  # hammer sync-plan list 
+  ---|------------------------------------------------|---------------------|----------|--------
+  ID | NAME                                           | START DATE          | INTERVAL | ENABLED
+  ---|------------------------------------------------|---------------------|----------|--------
+  3  | SyncPlan JBoss Enterprise Application Platform | 2016/10/25 18:00:00 | daily    | yes    
+  ---|------------------------------------------------|---------------------|----------|--------
+  # 
+  # hammer sync-plan info --id 3
+  ID:          3
+  Name:        SyncPlan JBoss Enterprise Application Platform
+  Start Date:  2016/10/25 18:00:00
+  Interval:    daily
+  Enabled:     yes
+  Description: 
+  Created at:  2016/10/25 14:47:12
+  Updated at:  2016/10/25 14:47:12
+
+  # hammer product list --sync-plan 'SyncPlan JBoss Enterprise Application Platform'
+  ---|---------------------------------------|-------------|--------------|--------------|-----------
+  ID | NAME                                  | DESCRIPTION | ORGANIZATION | REPOSITORIES | SYNC STATE
+  ---|---------------------------------------|-------------|--------------|--------------|-----------
+  13 | JBoss Enterprise Application Platform |             | RHV-LAB      | 3            |           
+  ---|---------------------------------------|-------------|--------------|--------------|-----------
+~~~
+
+```
+  # 
+  # hammer sync-plan create --name 'SyncPlan Red Hat Enterprise Linux Server' --enabled=true --interval daily --sync-date "2016-10-25 20:00:00"
+  # hammer product set-sync-plan --name 'Red Hat Enterprise Linux Server' --sync-plan 'SyncPlan Red Hat Enterprise Linux Server'
+  #
+  # hammer sync-plan create --name 'SyncPlan Red Hat Software Collections for RHEL Server' --enabled=true --interval daily --sync-date "2016-10-26 00:00:00"
+  # hammer product set-sync-plan --name 'Red Hat Software Collections for RHEL Server' --sync-plan 'SyncPlan Red Hat Software Collections for RHEL Server'
+  #
+  # hammer sync-plan create --name 'SyncPlan Red Hat Satellite' --enabled=true --interval daily --sync-date "2016-10-26 02:00:00"
+  # hammer product set-sync-plan --name 'Red Hat Satellite' --sync-plan 'SyncPlan Red Hat Satellite'
+  # hammer product set-sync-plan --name 'Red Hat Satellite Capsule' --sync-plan 'SyncPlan Red Hat Satellite'
+  # 
+  # hammer sync-plan create --name 'SyncPlan Red Hat Virtualization' --enabled=true --interval daily --sync-date "2016-10-26 04:00:00"
+  # hammer product set-sync-plan --name 'Red Hat Virtualization' --sync-plan 'SyncPlan Red Hat Virtualization'
+  # hammer product set-sync-plan --name 'Red Hat Virtualization Host' --sync-plan 'SyncPlan Red Hat Virtualization'
+```
+
+### Content
+#### Rules for Naming:
+
+ * Content Views           : CV-<NAME>
+ * Composite Content View  : CCV-<NAME>
+ * Life Cycle Environments : LCE-<NAME>-<No>
+ * Aktivation Keys         : AK-<NAME>
+ * Host Group              : HG-<NAME>
+ * ....tdc
+
+### Creating Content Views
+
+
+
+
+
